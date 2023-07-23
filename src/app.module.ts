@@ -5,6 +5,7 @@ import { DriverModule } from './driver/driver.module';
 import { MachineModule } from './machine/machine.module';
 import { BuilderModule } from './builder/builder.module';
 import { CompanyModule } from './company/company.module';
+import { Company } from './company/models/company.model';
 @Module({
   imports: [ConfigModule.forRoot({
     envFilePath: ".env",
@@ -12,11 +13,14 @@ import { CompanyModule } from './company/company.module';
   }),
   SequelizeModule.forRoot({
     dialect: "postgres",
-    host: process.env.HOST,
-    username: process.env.USER,
-    port: +process.env.PORT,
-    password: process.env.PASSWORD,
-    database: process.env.DB
+    host: process.env.PS_HOST,
+    username: process.env.PS_USER,
+    port: +process.env.PS_PORT,
+    password: process.env.PS_PASSWORD,
+    database: process.env.PS_DB,
+    models: [Company],
+    autoLoadModels: true,
+    logging: true
   }),
   CompanyModule,
   BuilderModule,

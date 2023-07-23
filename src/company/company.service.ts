@@ -1,9 +1,12 @@
 import { Injectable } from '@nestjs/common';
 import { CreateCompanyDto } from './dto/create-company.dto';
 import { UpdateCompanyDto } from './dto/update-company.dto';
-
+import { InjectModel } from "@nestjs/sequelize"
+import { Company } from './models/company.model';
 @Injectable()
 export class CompanyService {
+  constructor(@InjectModel(Company) private readonly companyRepo: typeof Company) {}
+
   create(createCompanyDto: CreateCompanyDto) {
     return 'This action adds a new company';
   }
