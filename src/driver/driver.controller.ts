@@ -8,27 +8,27 @@ export class DriverController {
   constructor(private readonly driverService: DriverService) {}
 
   @Post()
-  create(@Body() createDriverDto: CreateDriverDto) {
-    return this.driverService.create(createDriverDto);
+  createDriver(@Body() createDriverDto: CreateDriverDto) {
+    return this.driverService.createDriver(createDriverDto);
   }
 
   @Get()
-  findAll() {
-    return this.driverService.findAll();
+  findAllDrivers() {
+    return this.driverService.findAllDrivers();
   }
 
   @Get(':id')
-  findOne(@Param('id') id: string) {
-    return this.driverService.findOne(+id);
+  findDriverById(@Param('id') id: string) {
+    return this.driverService.findDriverById(+id);
   }
 
   @Patch(':id')
-  update(@Param('id') id: string, @Body() updateDriverDto: UpdateDriverDto) {
-    return this.driverService.update(+id, updateDriverDto);
+  updateDriver(@Param('id') id: string, @Body() updateDriverDto: UpdateDriverDto) {
+    return this.driverService.updateDriver(+id, updateDriverDto);
   }
 
   @Delete(':id')
-  remove(@Param('id') id: string) {
-    return this.driverService.remove(+id);
+  removeDriver(@Param('id') id: string) {
+    return this.driverService.removeDriver(+id);
   }
 }

@@ -6,6 +6,8 @@ import { MachineModule } from './machine/machine.module';
 import { BuilderModule } from './builder/builder.module';
 import { CompanyModule } from './company/company.module';
 import { Company } from './company/models/company.model';
+import { Builder } from './builder/models/builder.model';
+import { Driver } from './driver/models/driver.model';
 @Module({
   imports: [ConfigModule.forRoot({
     envFilePath: ".env",
@@ -18,7 +20,7 @@ import { Company } from './company/models/company.model';
     port: +process.env.PS_PORT,
     password: process.env.PS_PASSWORD,
     database: process.env.PS_DB,
-    models: [Company],
+    models: [Company, Builder, Driver],
     autoLoadModels: true,
     logging: true
   }),
