@@ -25,7 +25,7 @@ export class Builder extends Model<Builder, BuilderAttr> {
     @Column({
         type: DataType.DATE
     })
-    birth_day: string;
+    birth_day: Date;
 
     @Column({
         type: DataType.DECIMAL,

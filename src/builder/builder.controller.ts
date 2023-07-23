@@ -6,29 +6,29 @@ import { UpdateBuilderDto } from './dto/update-builder.dto';
 @Controller('builder')
 export class BuilderController {
   constructor(private readonly builderService: BuilderService) {}
-
+ 
   @Post()
-  create(@Body() createBuilderDto: CreateBuilderDto) {
-    return this.builderService.create(createBuilderDto);
+  createBuilder(@Body() createBuilderDto: CreateBuilderDto) {
+    return this.builderService.createBuilder(createBuilderDto);
   }
 
   @Get()
-  findAll() {
-    return this.builderService.findAll();
+  findAllBuilders() {
+    return this.builderService.findAllBuilders();
   }
 
   @Get(':id')
-  findOne(@Param('id') id: string) {
-    return this.builderService.findOne(+id);
+  findBuilderById(@Param('id') id: string) {
+    return this.builderService.findBuilderById(+id);
   }
 
   @Patch(':id')
-  update(@Param('id') id: string, @Body() updateBuilderDto: UpdateBuilderDto) {
-    return this.builderService.update(+id, updateBuilderDto);
+  updateBuilder(@Param('id') id: string, @Body() updateBuilderDto: UpdateBuilderDto) {
+    return this.builderService.updateBuilder(+id, updateBuilderDto);
   }
 
   @Delete(':id')
-  remove(@Param('id') id: string) {
-    return this.builderService.remove(+id);
+  removeBuilder(@Param('id') id: string) {
+    return this.builderService.removeBuilder(+id);
   }
 }
