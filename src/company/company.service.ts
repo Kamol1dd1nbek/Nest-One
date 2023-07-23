@@ -14,19 +14,31 @@ export class CompanyService {
 
   async findAllCompanies() {
     const companies = await this.companyRepo.findAll();
-    if (!companies) throw new HttpException("Companies not found", HttpStatus.NOT_FOUND);
+    if (companies.length === 0 ) throw new HttpException("Companies not found", HttpStatus.NOT_FOUND);
     else return companies;
   }
 
-  findOne(id: number) {
-    return `This action returns a #${id} company`;
+  async findCompanyById(id: number): Promise<Company> {
+    const company = await this.companyRepo.findByPk(id);
+    if (!company) throw new HttpException("Company with this id was not found", HttpStatus.NOT_FOUND);
+    else return company;
   }
 
-  update(id: number, updateCompanyDto: UpdateCompanyDto) {
-    return `This action updates a #${id} company`;
+  async findCompanyByName(name: string): Promise<Company> {
+    const company = await this.companyRepo.findOne({where: { name }});
+    if (!company) throw new HttpException("Company with this name was not found", HttpStatus.NOT_FOUND);
+    else return company;
   }
 
-  remove(id: number) {
-    return `This action removes a #${id} company`;
+  async updateCompany(id: number, updateCompanyDto: UpdateCompanyDto): Promise<Company> {
+    const company = await this.companyRepo.update(updateCompanyDto, {where: { id }, returning: true});
+    if (company[0] == 0) throw new HttpException("Company with this id was not found", HttpStatus.NOT_FOUND);
+    return company[1][0];
+  }
+
+  async removeCompany(id: number) {
+    const deletedCompany = await this.companyRepo.destroy({where: { id }});
+    if (deletedCompany == 0) throw new HttpException("Error deleting record", HttpStatus.NOT_FOUND);    
+    throw new HttpException("Record deleted successfully", HttpStatus.OK);
   }
 }
