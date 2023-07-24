@@ -8,7 +8,7 @@ import { Driver } from './models/driver.model';
 export class DriverService {
   constructor(@InjectModel(Driver) private readonly driverRepo: typeof Driver) {}
 
-   async createDriver(createDriverDto: CreateDriverDto): Promise<Driver> {
+  async createDriver(createDriverDto: CreateDriverDto): Promise<Driver> {
     const driver = await this.driverRepo.create(createDriverDto);
     return driver;
   }

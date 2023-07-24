@@ -1,1 +1,4 @@
-export class CreateMachineDto {}
+export class CreateMachineDto {
+    name: string;
+    companyId: number;
+}
